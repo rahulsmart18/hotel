@@ -1,26 +1,700 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "lenis/dist/lenis.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  /* Body: Major Mono Display (Google Fonts via <link>) */
+  --font-sans: "Major Mono Display", monospace;
   --font-mono: var(--font-geist-mono);
+  /* Display/headings: Major Mono Display */
+  --font-heading: "Major Mono Display", monospace;
+  /* Reduced font-weight scale — lighter editorial feel */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 400;
+  --font-weight-semibold: 400;
+  --font-weight-bold: 500;
+  --font-weight-extrabold: 600;
+  --font-weight-black: 700;
+  --color-gold: var(--gold);
+  --color-gold-muted: var(--gold-muted);
+  --color-spice: var(--spice);
+  --color-spice-muted: var(--spice-muted);
+  --color-jade: var(--jade);
+  --color-jade-muted: var(--jade-muted);
+  --color-jasmine: var(--jasmine);
+  --color-glow: var(--glow);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
+
+/* --- Major Mono Display utility --- */
+.font-major-mono {
+  font-family: "Major Mono Display", "Courier New", monospace;
+}
+
+/*
+ * Commercial Cream-inspired palette
+ * com-1 Electric purple #5308ff | com-2 Fresh green #7bbd5c
+ * com-3 Deep purple-gray #403759 | com-4 Light lavender #d2e3ff
+ * com-5 Warm cream #f2edeb | com-6 Dark charcoal #2f2f2f
+ */
+
+/*
+ * Clean blue/cream palette
+ * #EFECE3 Warm cream | #8FABD4 Steel blue | #4A70A9 Ocean blue | #000000 Pure black
+ */
+:root {
+  --color-com-1: #4a70a9;
+  --color-com-2: #8fabd4;
+  --color-com-3: #1a2a3f;
+  --color-com-4: #efece3;
+  --color-com-5: #f5f3ee;
+  --color-com-6: #111111;
+
+  --background: #000000;
+  --foreground: #efece3;
+  --card: #0d1520;
+  --card-foreground: #efece3;
+  --popover: #091020;
+  --popover-foreground: #efece3;
+  --primary: #4a70a9;
+  --primary-foreground: #ffffff;
+  --secondary: #111111;
+  --secondary-foreground: #efece3;
+  --muted: #0a0f1a;
+  --muted-foreground: #8fabd4;
+  --accent: #0d1928;
+  --accent-foreground: #8fabd4;
+  --destructive: #e03c3c;
+  --border: rgba(74, 112, 169, 0.18);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #4a70a9;
+  --gold: #8fabd4;
+  --gold-muted: #6a8cb8;
+  --spice: #4a70a9;
+  --spice-muted: #2f527e;
+  --jade: #8fabd4;
+  --jade-muted: #6a8cb8;
+  --jasmine: #efece3;
+  --glow: #6a90c4;
+  --chart-1: #4a70a9;
+  --chart-2: #8fabd4;
+  --chart-3: #efece3;
+  --chart-4: #1a2a3f;
+  --chart-5: #000000;
+  --radius: 0.75rem;
+  --sidebar: #091020;
+  --sidebar-foreground: #efece3;
+  --sidebar-primary: #4a70a9;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #0d1928;
+  --sidebar-accent-foreground: #8fabd4;
+  --sidebar-border: rgba(74, 112, 169, 0.12);
+  --sidebar-ring: #4a70a9;
+  --home-grain-opacity: 0.04;
+  --gradient-cta: linear-gradient(135deg, #4a70a9, #8fabd4);
+
+  --chapter-paper: #0d1520;
+  --chapter-ink: #efece3;
+  --chapter-muted: #8fabd4;
+  --chapter-card: #000000;
+  --chapter-border: rgba(74, 112, 169, 0.18);
+
+  /* Sticky sub-nav offset — matches site header height */
+  --site-header-height: 3.5rem;
+}
+
+@media (min-width: 640px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --site-header-height: 4rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.dark {
+  --background: #000000;
+  --foreground: #efece3;
+  --card: #0a1220;
+  --card-foreground: #efece3;
+  --popover: #080e1a;
+  --popover-foreground: #efece3;
+  --primary: #5a80b9;
+  --primary-foreground: #ffffff;
+  --secondary: #0d0d0d;
+  --secondary-foreground: #efece3;
+  --muted: #070c15;
+  --muted-foreground: #8fabd4;
+  --accent: #0a1626;
+  --accent-foreground: #8fabd4;
+  --destructive: #e03c3c;
+  --border: rgba(74, 112, 169, 0.14);
+  --input: rgba(255, 255, 255, 0.07);
+  --ring: #5a80b9;
+  --gold: #8fabd4;
+  --gold-muted: #6a8cb8;
+  --spice: #5a80b9;
+  --spice-muted: #3a6090;
+  --jade: #8fabd4;
+  --jade-muted: #6a8cb8;
+  --jasmine: #f0ede4;
+  --glow: #7aa0cc;
+  --chart-1: #5a80b9;
+  --chart-2: #8fabd4;
+  --chart-3: #efece3;
+  --chart-4: #0a1220;
+  --chart-5: #000000;
+  --sidebar: #080e1a;
+  --sidebar-foreground: #efece3;
+  --sidebar-primary: #5a80b9;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #0a1626;
+  --sidebar-accent-foreground: #8fabd4;
+  --sidebar-border: rgba(74, 112, 169, 0.1);
+  --sidebar-ring: #5a80b9;
+  --home-grain-opacity: 0.05;
+  --gradient-cta: linear-gradient(135deg, #5a80b9, #8fabd4);
+  --chapter-paper: #0a1220;
+  --chapter-ink: #efece3;
+  --chapter-muted: #8fabd4;
+  --chapter-card: #000000;
+  --chapter-border: rgba(74, 112, 169, 0.14);
+}
+
+/* (legacy light palette removed — site uses blue/cream dark palette above) */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  html {
+    @apply font-sans scroll-smooth;
+  }
+
+  /* ── Jeppesen.dev-inspired type scale ─────────────────────────────── */
+  /* Hero / cinematic display — ~7–9 vw fluid */
+  .text-display {
+    font-size: clamp(3.2rem, 8vw, 9rem);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    font-weight: 400;
+  }
+  /* Page heading h1 — ~4–6 vw */
+  h1 {
+    font-size: clamp(2.4rem, 5.5vw, 6rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 400;
+  }
+  /* Section heading h2 — ~2.2–3.5 vw */
+  h2 {
+    font-size: clamp(1.7rem, 3.5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+  /* Sub-heading h3 */
+  h3 {
+    font-size: clamp(1.1rem, 2vw, 1.8rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+  }
+  /* Card / label h4–h6 */
+  h4, h5, h6 {
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+    font-weight: 400;
+  }
+  /* Body text */
+  p, li, address, blockquote, figcaption, td, th {
+    font-family: "Major Mono Display", monospace;
+    font-size: clamp(0.78rem, 1.1vw, 0.95rem);
+    font-weight: 400;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
+  }
+  label {
+    font-family: "Major Mono Display", monospace;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  button, input, select, textarea {
+    font-family: "Major Mono Display", monospace;
+    font-weight: 400;
+  }
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 45%, var(--gold));
+    color: var(--primary-foreground);
+  }
+}
+
+/* Home — premium atmosphere (grain + subtle gold pulse) */
+@layer utilities {
+  /* Hide scrollbar while keeping scroll functionality */
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .home-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: var(--home-grain-opacity, 0.04);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  .home-shine {
+    background: linear-gradient(
+      105deg,
+      transparent 38%,
+      color-mix(in oklch, var(--gold), transparent 86%) 48%,
+      color-mix(in oklch, var(--spice), transparent 90%) 52%,
+      transparent 62%
+    );
+    background-size: 200% 100%;
+  }
+
+  /**
+   * Kolam-inspired lattice — very low contrast; use under content with overlay blend.
+   */
+  .home-kolam {
+    opacity: 0.045;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+    background-image:
+      repeating-linear-gradient(
+        60deg,
+        color-mix(in oklch, var(--gold), transparent 97%) 0 1px,
+        transparent 1px 22px
+      ),
+      repeating-linear-gradient(
+        -60deg,
+        color-mix(in oklch, var(--jade), transparent 97%) 0 1px,
+        transparent 1px 22px
+      );
+    background-size: 32px 56px, 32px 56px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-kolam {
+      opacity: 0.03;
+    }
+  }
+
+  /** Chettinad-style tile step — section backgrounds */
+  .home-tile-horizon {
+    background-image: linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--spice-muted), transparent 96%) 0 1px,
+      transparent 1px 10px
+    );
+    background-size: 100% 11px;
+    opacity: 0.35;
+  }
+
+  /** Noto Sans Tamil — set on html via `next/font`; use for Tamil copy. */
+  .font-tamil {
+    font-family: var(--font-tamil), system-ui, sans-serif;
+  }
+
+  /** Slightly warmer body for Tamil script legibility on dark warm base */
+  .text-tamil-body {
+    color: color-mix(in oklch, var(--foreground) 92%, var(--jasmine) 8%);
+  }
+
+  /**
+   * Pointer-follow spotlight — parent sets inline style
+   * `--spot-x` / `--spot-y` (percentages). Disabled via opacity in reduced-motion.
+   */
+  .home-hero-spotlight {
+    pointer-events: none;
+    background: radial-gradient(
+      circle 42vmin at var(--spot-x, 50%) var(--spot-y, 36%),
+      color-mix(in oklch, var(--spice), transparent 82%),
+      transparent 70%
+    );
+    mix-blend-mode: screen;
+    opacity: 0.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-hero-spotlight {
+      opacity: 0;
+    }
+  }
+
+  /** Hero primary CTA — depth + horizontal shine on hover */
+  .hero-cta-primary {
+    position: relative;
+    overflow: hidden;
+    border-radius: calc(var(--radius) + 3px);
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--spice), transparent 35%),
+      0 24px 56px -20px rgba(0, 0, 0, 0.58);
+    transition: transform 0.2s ease, box-shadow 0.35s ease;
+  }
+
+  .hero-cta-primary:hover {
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--gold), transparent 22%),
+      0 24px 56px -20px rgba(0, 0, 0, 0.58),
+      0 0 22px rgba(74, 112, 169, 0.55),
+      0 0 48px rgba(143, 171, 212, 0.22);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cta-primary:hover {
+      box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--spice), transparent 35%),
+        0 24px 56px -20px rgba(0, 0, 0, 0.58);
+    }
+  }
+
+  .hero-cta-primary:active {
+    transform: scale(0.985);
+  }
+
+  .hero-cta-primary .hero-cta-shine {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    translate: -120% 0;
+    background: linear-gradient(
+      100deg,
+      transparent 25%,
+      color-mix(in oklch, #fff, transparent 52%) 50%,
+      transparent 75%
+    );
+    transition: translate 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hero-cta-primary:hover .hero-cta-shine {
+    translate: 120% 0;
+  }
+
+  /** Hero outline CTA — inner ring on hover */
+  .hero-cta-outline {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .hero-cta-outline:active {
+    transform: scale(0.985);
+  }
+
+  .hero-cta-outline::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--gold), transparent 55%);
+    transition: opacity 0.35s ease;
+  }
+
+  .hero-cta-outline:hover::after {
+    opacity: 1;
+  }
+
+  /** Neo-glass surface — header / floating decks */
+  .surface-glass {
+    background: color-mix(in oklch, var(--card) 58%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: color-mix(in oklch, var(--foreground), transparent 90%);
+    box-shadow:
+      0 1px 0 color-mix(in oklch, var(--gold), transparent 82%),
+      inset 0 1px 0 color-mix(in oklch, #fff, transparent 94%);
+  }
+
+  .dark .surface-glass {
+    background: color-mix(in oklch, var(--background) 52%, transparent);
+    border-color: color-mix(in oklch, var(--jasmine), transparent 92%);
+  }
+
+  /** Editorial pillar card on dark */
+  .surface-glass-card {
+    background: color-mix(in oklch, var(--card) 72%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in oklch, var(--foreground), transparent 90%);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 24px 60px -40px color-mix(in oklch, var(--foreground), transparent 88%);
+  }
+
+  .dark .surface-glass-card {
+    border: 1px solid color-mix(in oklch, var(--jasmine), transparent 92%);
+    box-shadow: 0 24px 60px -40px rgba(0, 0, 0, 0.45);
+  }
+}
+
+@keyframes home-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes home-scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 0.85;
+  }
+}
+
+/** Full-bleed kinetic type (Eislab-style marquee) */
+@keyframes home-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.home-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: clamp(2rem, 5vw, 4rem);
+  animation: home-marquee 55s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.75rem;
+    width: 100%;
+    max-width: 48rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-shine-animate {
+    animation: none !important;
+  }
+
+  .home-scroll-hint {
+    animation: none !important;
+  }
+}
+/* --- Section atmosphere --- */
+.section-gradient-hero {
+  background: linear-gradient(135deg, #f5f5f5 0%, #dff1f1 52%, #bbd5da 100%);
+  opacity: 0.55;
+}
+
+.dark .section-gradient-hero {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0d1e20 52%, #1a3038 100%);
+  opacity: 0.65;
+}
+
+.section-gradient-menu {
+  background: linear-gradient(
+    180deg,
+    #000000 0%,
+    #0a1220 45%,
+    #0d1520 100%
+  );
+}
+
+.section-gradient-footer {
+  background: linear-gradient(180deg, #f5f5f5 0%, #dff1f1 100%);
+}
+
+@keyframes section-promo-shift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.section-gradient-promo {
+  background: linear-gradient(45deg, #ff0000, #bbd5da, #dff1f1);
+  background-size: 200% 200%;
+  opacity: 0.18;
+  animation: section-promo-shift 16s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-gradient-promo {
+    animation: none;
+    background-size: 100% 100%;
+    opacity: 0.12;
+  }
+}
+
+/* --- Shape hover effects (clip-path variants) --- */
+.hover-shape-blob {
+  clip-path: polygon(50% 0%, 93% 25%, 100% 60%, 75% 97%, 25% 97%, 0% 60%, 7% 25%);
+  transition: clip-path 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hover-shape-blob:hover {
+  clip-path: polygon(45% 0%, 100% 18%, 94% 62%, 72% 95%, 28% 98%, 4% 68%, 0% 22%);
+}
+
+.hover-shape-arch {
+  clip-path: inset(0% 0% 0% 0% round 0 0 50% 50%);
+  transition: clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hover-shape-arch:hover {
+  clip-path: inset(0% 0% 0% 0% round 40% 40% 50% 50%);
+}
+
+.hover-shape-diamond {
+  clip-path: inset(0% 0% 0% 0% round 1rem);
+  transition: clip-path 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s ease;
+}
+.hover-shape-diamond:hover {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  transform: scale(1.04);
+}
+
+.hover-shape-wave {
+  clip-path: inset(0% 0% 0% 0% round 1rem);
+  transition: clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hover-shape-wave:hover {
+  clip-path: polygon(
+    0% 8%, 5% 2%, 10% 8%, 15% 2%, 20% 8%, 25% 2%, 30% 8%,
+    35% 2%, 40% 8%, 45% 2%, 50% 8%, 55% 2%, 60% 8%, 65% 2%,
+    70% 8%, 75% 2%, 80% 8%, 85% 2%, 90% 8%, 95% 2%, 100% 8%,
+    100% 92%, 95% 98%, 90% 92%, 85% 98%, 80% 92%, 75% 98%,
+    70% 92%, 65% 98%, 60% 92%, 55% 98%, 50% 92%, 45% 98%,
+    40% 92%, 35% 98%, 30% 92%, 25% 98%, 20% 92%, 15% 98%,
+    10% 92%, 5% 98%, 0% 92%
+  );
+}
+
+/* --- Background pattern utilities --- */
+.bg-dot-pattern {
+  background-image: radial-gradient(circle, rgba(255, 0, 0, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.bg-mesh-pattern {
+  background-image:
+    linear-gradient(rgba(187, 213, 218, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(187, 213, 218, 0.4) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-cross-pattern {
+  background-image:
+    linear-gradient(rgba(187, 213, 218, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(187, 213, 218, 0.35) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* --- Hand-drawn underline animation --- */
+.hand-underline {
+  position: relative;
+  display: inline-block;
+}
+.hand-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #ff0000;
+  border-radius: 999px;
+  clip-path: polygon(
+    0% 40%, 3% 20%, 8% 60%, 14% 25%, 20% 55%, 26% 30%,
+    32% 65%, 38% 20%, 44% 55%, 50% 35%, 56% 65%, 62% 25%,
+    68% 55%, 74% 30%, 80% 60%, 86% 25%, 92% 55%, 97% 35%, 100% 50%,
+    100% 80%, 97% 65%, 92% 85%, 86% 55%, 80% 90%, 74% 60%,
+    68% 85%, 62% 55%, 56% 95%, 50% 65%, 44% 85%, 38% 50%,
+    32% 95%, 26% 60%, 20% 85%, 14% 55%, 8% 90%, 3% 50%, 0% 70%
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hand-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* --- Section badge (Major Mono Display editorial labels) --- */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-family: "Major Mono Display", monospace;
+  background: rgba(187, 213, 218, 0.35);
+  color: #4a7278;
+  border: 1px solid rgba(187, 213, 218, 0.7);
+}
+
+.dark .section-badge {
+  background: rgba(187, 213, 218, 0.1);
+  color: #bbd5da;
+  border-color: rgba(187, 213, 218, 0.25);
 }

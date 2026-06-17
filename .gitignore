@@ -23,6 +23,10 @@
 # misc
 .DS_Store
 *.pem
+.cursor/
+
+# local font archives
+public/*.zip
 
 # debug
 npm-debug.log*
